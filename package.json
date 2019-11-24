@@ -1,0 +1,49 @@
+{
+  "name": "react-native-json-grid-list",
+  "description": "",
+  "version": "1.0.1",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react-native-fast-image": "^7.0.2",
+    "react-native-gesture-handler": "1.5.0",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@types/react": "^16.9.11",
+    "@types/react-native": "^0.60.22",
+    "@types/styled-components": "^4.4.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^6.5.1",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "react-test-renderer": "16.9.0",
+    "typescript": "^3.8.2"
+  },
+  "main": "src/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react-component",
+    "react-native-component",
+    "react",
+    "react native",
+    "mobile",
+    "ios",
+    "android",
+    "ui",
+    "list",
+    "flatlist",
+    "grid",
+    "grid list"
+  ],
+  "author": "Saul Dominguez",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauldom102/react-native-json-grid-list.git"
+  }
+}
