@@ -5,7 +5,13 @@ import {LayoutType} from '../../../models/Layout';
 import {ChildrenProps} from '../../../models/Item';
 import {ReactNode} from 'react';
 
+interface onPressParams {
+  itemId?: string;
+  photo?: string;
+}
+
 export interface Props {
+  id?: string;
   flex?: number;
   color?: Color;
   style?: ViewStyle;
@@ -19,6 +25,7 @@ export interface Props {
   reverseY?: boolean;
   children?: (props: ChildrenProps) => ReactNode;
   childrenProps?: ChildrenProps;
+  onPress: (params: onPressParams) => void;
 }
 
 export interface OverlayProps {

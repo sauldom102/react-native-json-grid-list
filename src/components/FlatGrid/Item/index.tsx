@@ -1,4 +1,4 @@
-import React, {FC, memo, useMemo} from 'react';
+import React, {FC, memo, useMemo, useCallback} from 'react';
 import {Dimensions} from 'react-native';
 import {Props} from './types';
 import {Container} from './styles';
@@ -12,11 +12,22 @@ const Item: FC<Props> & {
     layoutHeight: LayoutRoot['height'] | undefined,
     paddingHorizontal: number,
   ) => number;
-} = ({layout, items, style, paddingHorizontal = 0}) => {
+} = ({layout, items, onPress, layoutName, style, paddingHorizontal = 0}) => {
   const h = useMemo(() => Item.calcHeight(layout.height, paddingHorizontal), [
     layout.height,
     paddingHorizontal,
   ]);
+
+  const handlePressItem = useCallback(
+    ({itemId, photo}) => {
+      onPress({
+        layout: layoutName,
+        itemId,
+        photo,
+      });
+    },
+    [onPress, layoutName],
+  );
 
   return (
     <Container
@@ -30,6 +41,7 @@ const Item: FC<Props> & {
         items={items}
         spacing={layout.spacing}
         type={LayoutType.ROW}
+        onPressItem={handlePressItem}
       />
     </Container>
   );

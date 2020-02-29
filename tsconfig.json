@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -9,7 +10,7 @@
     "module": "commonjs",
     "outDir": "lib",
     "noEmit": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": true,
     "strict": true,
     "target": "esnext",

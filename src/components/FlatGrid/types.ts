@@ -1,5 +1,4 @@
-import {Props as ItemProps} from './Item/types';
-import {ViewStyle, FlatListProps} from 'react-native';
+import {FlatListProps} from 'react-native';
 import {ItemLayout} from '../../models/Item';
 import {LayoutRoot} from '../../models/Layout';
 
@@ -14,14 +13,21 @@ export interface Layouts {
   [name: string]: LayoutRoot;
 }
 
+interface onItemPressParams {
+  layout: string;
+  itemId?: string;
+  photo?: string;
+}
+
 export interface Props {
-  style?: ViewStyle;
+  style?: FlatListProps<ItemType>['style'];
   rowSeparator?: number;
   paddingHorizontal?: number;
   showsVerticalScrollIndicator?: FlatListProps<
-    ItemProps
+    ItemType
   >['showsVerticalScrollIndicator'];
   layouts: Layouts;
+  onItemPress: (params: onItemPressParams) => void;
   data: ItemType[];
 }
 

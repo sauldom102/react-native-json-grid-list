@@ -2,6 +2,11 @@ import {ViewStyle} from 'react-native';
 import {Layout, LayoutType} from '../../models/Layout';
 import {ItemLayout} from '../../models/Item';
 
+interface onPressItemParams {
+  itemId?: string;
+  photo?: string;
+}
+
 export interface Props extends Layout {
   style?: ViewStyle;
   index?: number;
@@ -9,6 +14,7 @@ export interface Props extends Layout {
   items?: {
     [itemKey: string]: ItemLayout;
   };
+  onPressItem: (params: onPressItemParams) => void;
 }
 
 export interface ContainerProps {

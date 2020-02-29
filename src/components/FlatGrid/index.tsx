@@ -9,16 +9,20 @@ const FlatGrid: FC<Props> = ({
   rowSeparator = 0,
   paddingHorizontal = 0,
   showsVerticalScrollIndicator,
+  onItemPress,
+  style,
 }) => {
   const handleRenderItem = useCallback(
     ({item: {layout, items}}) => (
       <Item
+        layoutName={layout}
         layout={layouts[layout]}
         items={items}
         paddingHorizontal={paddingHorizontal}
+        onPress={onItemPress}
       />
     ),
-    [layouts, paddingHorizontal],
+    [layouts, paddingHorizontal, onItemPress],
   );
 
   const extractKey = useCallback((_, index) => index + '', []);
@@ -58,6 +62,7 @@ const FlatGrid: FC<Props> = ({
       ItemSeparatorComponent={handleRenderSeparator}
       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       getItemLayout={handleGetItemLayout}
+      style={style}
     />
   );
 };

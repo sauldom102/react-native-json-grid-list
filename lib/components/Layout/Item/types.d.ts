@@ -1,28 +1,36 @@
-import {Color, OpacityProperty} from 'csstype';
-import {ViewStyle} from 'react-native';
-import {FastImageSource} from 'react-native-fast-image';
-import {LayoutType} from '../../../models/Layout';
-import {ChildrenProps} from '../../../models/Item';
-import {ReactNode} from 'react';
+import { Color, OpacityProperty } from 'csstype';
+import { ViewStyle } from 'react-native';
+import { FastImageSource } from 'react-native-fast-image';
+import { LayoutType } from '../../../models/Layout';
+import { ChildrenProps } from '../../../models/Item';
+import { ReactNode } from 'react';
+interface onPressParams {
+    itemId?: string;
+    photo?: string;
+}
 export interface Props {
-  flex?: number;
-  color?: Color;
-  style?: ViewStyle;
-  index?: number;
-  parentType?: LayoutType;
-  overlay?: OverlayProps;
-  photo?: FastImageSource;
-  spacing?: number;
-  reverseX?: boolean;
-  reverseY?: boolean;
-  children?: (props: ChildrenProps) => ReactNode;
-  childrenProps?: ChildrenProps;
+    id?: string;
+    flex?: number;
+    color?: Color;
+    style?: ViewStyle;
+    index?: number;
+    parentType?: LayoutType;
+    overlay?: OverlayProps;
+    photo?: FastImageSource;
+    spacing?: number;
+    borderRadius?: number;
+    reverseX?: boolean;
+    reverseY?: boolean;
+    children?: (props: ChildrenProps) => ReactNode;
+    childrenProps?: ChildrenProps;
+    onPress: (params: onPressParams) => void;
 }
 export interface OverlayProps {
-  color?: Color;
-  opacity: OpacityProperty;
+    color?: Color;
+    opacity: OpacityProperty;
 }
 export interface ButtonProps {
-  reverseX?: boolean;
-  reverseY?: boolean;
+    reverseX?: boolean;
+    reverseY?: boolean;
 }
+export {};

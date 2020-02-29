@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React from 'react';
 import { Props } from './types';
-declare const Layout: FC<Props>;
-export default Layout;
+declare const _default: React.NamedExoticComponent<Props>;
+export default _default;

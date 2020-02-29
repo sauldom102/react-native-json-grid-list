@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, memo} from 'react';
 import {Props} from './types';
 import {Container} from './styles';
 import Item from './Item';
@@ -20,6 +20,7 @@ const Layout: FC<Props> = ({
   overlay,
   reverseX,
   reverseY,
+  onPressItem,
 }) => {
   const itemInfo = useMemo<ItemLayout | undefined>(
     () => (items && id ? items[id] : undefined),
@@ -30,6 +31,7 @@ const Layout: FC<Props> = ({
     return (
       <Item
         {...itemInfo}
+        id={id}
         index={index}
         parentType={parentType}
         spacing={spacing}
@@ -37,7 +39,8 @@ const Layout: FC<Props> = ({
         flex={flex}
         overlay={overlay}
         reverseX={reverseX}
-        reverseY={reverseY}>
+        reverseY={reverseY}
+        onPress={onPressItem}>
         {itemInfo && itemInfo.children ? itemInfo.children : undefined}
       </Item>
     );
@@ -65,10 +68,11 @@ const Layout: FC<Props> = ({
             key={layout.id}
             reverseX={reverseX}
             reverseY={reverseY}
+            onPressItem={onPressItem}
           />
         ))}
     </Container>
   );
 };
 
-export default Layout;
+export default memo(Layout);
