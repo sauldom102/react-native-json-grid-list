@@ -1,7 +1,7 @@
 {
   "name": "react-native-json-grid-list",
   "description": "",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "lint": "eslint ."
   },
