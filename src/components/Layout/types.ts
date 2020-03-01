@@ -14,6 +14,7 @@ export interface Props extends Layout {
   items?: {
     [itemKey: string]: ItemLayout;
   };
+  visible: boolean;
   onPressItem: (params: onPressItemParams) => void;
 }
 

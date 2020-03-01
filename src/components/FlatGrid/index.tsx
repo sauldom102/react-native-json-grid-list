@@ -1,7 +1,9 @@
-import React, {FC, useCallback} from 'react';
+import React, {FC, useCallback, useState} from 'react';
+import {ViewToken} from 'react-native';
 import {Props} from './types';
 import Item, {calcHeight} from './Item';
 import {List, Separator} from './styles';
+import notEmpty from '../../utils/notEmpty';
 
 const FlatGrid: FC<Props> = ({
   layouts,
@@ -12,17 +14,25 @@ const FlatGrid: FC<Props> = ({
   onItemPress,
   style,
 }) => {
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+
+  const isItemVisible = useCallback(
+    (itemIndex: number) => visibleItems.indexOf(itemIndex) !== -1,
+    [visibleItems],
+  );
+
   const handleRenderItem = useCallback(
-    ({item: {layout, items}}) => (
+    ({item: {layout, items}, index}) => (
       <Item
         layoutName={layout}
         layout={layouts[layout]}
         items={items}
         paddingHorizontal={paddingHorizontal}
         onPress={onItemPress}
+        visible={isItemVisible(index)}
       />
     ),
-    [layouts, paddingHorizontal, onItemPress],
+    [layouts, paddingHorizontal, onItemPress, isItemVisible],
   );
 
   const extractKey = useCallback((_, index) => index + '', []);
@@ -54,6 +64,13 @@ const FlatGrid: FC<Props> = ({
     [layouts, paddingHorizontal],
   );
 
+  const handleViewableItemsChanged = useCallback(
+    ({viewableItems: vi}: {viewableItems: ViewToken[]}) => {
+      setVisibleItems(vi.map(({index}) => index).filter(notEmpty));
+    },
+    [],
+  );
+
   return (
     <List
       data={data}
@@ -62,6 +79,7 @@ const FlatGrid: FC<Props> = ({
       ItemSeparatorComponent={handleRenderSeparator}
       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       getItemLayout={handleGetItemLayout}
+      onViewableItemsChanged={handleViewableItemsChanged}
       style={style}
     />
   );

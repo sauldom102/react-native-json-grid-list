@@ -4,6 +4,7 @@ import { FastImageSource } from 'react-native-fast-image';
 import { LayoutType } from '../../../models/Layout';
 import { ChildrenProps } from '../../../models/Item';
 import { ReactNode } from 'react';
+import { VideoProperties } from 'react-native-video';
 interface onPressParams {
     itemId?: string;
     photo?: string;
@@ -17,6 +18,8 @@ export interface Props {
     parentType?: LayoutType;
     overlay?: OverlayProps;
     photo?: FastImageSource;
+    video?: VideoProperties['source'];
+    visible: boolean;
     spacing?: number;
     borderRadius?: number;
     reverseX?: boolean;

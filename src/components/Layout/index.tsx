@@ -21,6 +21,7 @@ const Layout: FC<Props> = ({
   reverseX,
   reverseY,
   onPressItem,
+  visible,
 }) => {
   const itemInfo = useMemo<ItemLayout | undefined>(
     () => (items && id ? items[id] : undefined),
@@ -40,7 +41,8 @@ const Layout: FC<Props> = ({
         overlay={overlay}
         reverseX={reverseX}
         reverseY={reverseY}
-        onPress={onPressItem}>
+        onPress={onPressItem}
+        visible={visible}>
         {itemInfo && itemInfo.children ? itemInfo.children : undefined}
       </Item>
     );
@@ -69,6 +71,7 @@ const Layout: FC<Props> = ({
             reverseX={reverseX}
             reverseY={reverseY}
             onPressItem={onPressItem}
+            visible={visible}
           />
         ))}
     </Container>

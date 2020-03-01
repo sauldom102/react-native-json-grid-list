@@ -13,6 +13,7 @@ export interface Props {
     items: {
         [itemKey: string]: ItemLayout;
     };
+    visible: boolean;
     paddingHorizontal?: number;
     onPress: (params: onPressParams) => void;
 }

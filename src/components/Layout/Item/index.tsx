@@ -1,8 +1,9 @@
-import React, {FC, useCallback, memo} from 'react';
+import React, {FC, useCallback, memo, useRef, useEffect} from 'react';
 import {Props} from './types';
 import {Container} from '../styles';
-import {Button, Overlay} from './styles';
+import {Button, Video, Overlay} from './styles';
 import FastImage from 'react-native-fast-image';
+import DefaultVideo from 'react-native-video';
 
 const LayoutItem: FC<Props> = ({
   id,
@@ -15,12 +16,22 @@ const LayoutItem: FC<Props> = ({
   parentType,
   overlay,
   photo,
+  video,
+  visible,
   reverseX,
   reverseY,
   children,
   childrenProps = {},
   onPress,
 }) => {
+  const videoRef = useRef<DefaultVideo>(null);
+
+  useEffect(() => {
+    if (visible) {
+      videoRef.current?.seek(0);
+    }
+  }, [visible]);
+
   const handlePress = useCallback(() => {
     onPress({itemId: id, photo: photo?.uri});
   }, [onPress, id, photo]);
@@ -49,6 +60,9 @@ const LayoutItem: FC<Props> = ({
               }}
               source={photo}
             />
+          )}
+          {video && (
+            <Video ref={videoRef} source={video} muted resizeMode="cover" />
           )}
           {overlay && (
             <Overlay

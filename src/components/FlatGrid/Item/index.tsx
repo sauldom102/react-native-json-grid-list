@@ -12,7 +12,15 @@ const Item: FC<Props> & {
     layoutHeight: LayoutRoot['height'] | undefined,
     paddingHorizontal: number,
   ) => number;
-} = ({layout, items, onPress, layoutName, style, paddingHorizontal = 0}) => {
+} = ({
+  layout,
+  items,
+  onPress,
+  visible,
+  layoutName,
+  style,
+  paddingHorizontal = 0,
+}) => {
   const h = useMemo(() => Item.calcHeight(layout.height, paddingHorizontal), [
     layout.height,
     paddingHorizontal,
@@ -42,6 +50,7 @@ const Item: FC<Props> & {
         spacing={layout.spacing}
         type={LayoutType.ROW}
         onPressItem={handlePressItem}
+        visible={visible}
       />
     </Container>
   );

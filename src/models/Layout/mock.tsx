@@ -3,9 +3,8 @@ import {Text, View} from 'react-native';
 import {LayoutType, LayoutRoot} from '.';
 
 export const LAYOUT1 = {
-  spacing: 8,
+  spacing: 4,
   height: 350,
-  borderRadius: 8,
   layouts: [
     {
       id: 'column-1',
@@ -31,12 +30,11 @@ export const LAYOUT1 = {
 } as LayoutRoot;
 
 export const LAYOUT2 = {
-  spacing: 8,
+  spacing: 4,
   height: {
     cols: 1,
-    spacing: 16,
+    spacing: 8,
   },
-  borderRadius: 8,
   layouts: [
     {
       id: 'column-1',
@@ -79,12 +77,11 @@ export const LAYOUT2 = {
 } as LayoutRoot;
 
 export const LAYOUT3 = {
-  spacing: 8,
+  spacing: 4,
   height: {
     cols: 2 / 3,
-    spacing: 8,
+    spacing: 4,
   },
-  borderRadius: 8,
   layouts: [
     {
       id: 'column-1',
@@ -110,10 +107,10 @@ export const LAYOUT3 = {
 } as LayoutRoot;
 
 export const LAYOUT4 = {
-  spacing: 8,
+  spacing: 4,
   height: {
     cols: 2 / 3,
-    spacing: 16,
+    spacing: 8,
   },
   layouts: [
     {
@@ -165,10 +162,10 @@ export const LAYOUT4 = {
 } as LayoutRoot;
 
 export const LAYOUT5 = {
-  spacing: 8,
+  spacing: 4,
   height: {
     cols: 1,
-    spacing: 16,
+    spacing: 8,
   },
   layouts: [
     {
