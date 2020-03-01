@@ -19,6 +19,7 @@ const Item: FC<Props> & {
   visible,
   layoutName,
   style,
+  renderItemChildren,
   paddingHorizontal = 0,
 }) => {
   const h = useMemo(() => Item.calcHeight(layout.height, paddingHorizontal), [
@@ -27,14 +28,32 @@ const Item: FC<Props> & {
   ]);
 
   const handlePressItem = useCallback(
-    ({itemId, photo}) => {
-      onPress({
-        layout: layoutName,
-        itemId,
-        photo,
-      });
+    ({itemId, photo, video}) => {
+      if (onPress) {
+        onPress({
+          layout: layoutName,
+          itemId,
+          photo,
+          video,
+        });
+      }
     },
     [onPress, layoutName],
+  );
+
+  const handleRenderItemChildren = useCallback(
+    ({itemId, photo, video, childrenProps}) => {
+      if (renderItemChildren) {
+        return renderItemChildren({
+          layout: layoutName,
+          itemId,
+          photo,
+          video,
+          childrenProps,
+        });
+      }
+    },
+    [renderItemChildren, layoutName],
   );
 
   return (
@@ -51,6 +70,7 @@ const Item: FC<Props> & {
         type={LayoutType.ROW}
         onPressItem={handlePressItem}
         visible={visible}
+        renderItemChildren={handleRenderItemChildren}
       />
     </Container>
   );

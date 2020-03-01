@@ -1,5 +1,3 @@
-import React from 'react';
-import {Text, View} from 'react-native';
 import {LayoutType, LayoutRoot} from '.';
 
 export const LAYOUT1 = {
@@ -138,23 +136,6 @@ export const LAYOUT4 = {
           overlay: {
             opacity: 0.5,
           },
-          children: ({more = 220}: {more: number}) => (
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text
-                style={{
-                  color: '#fff',
-                  fontSize: 18,
-                  fontWeight: '500',
-                }}>
-                {`+${more} more`}
-              </Text>
-            </View>
-          ),
         },
       ],
     },

@@ -21,7 +21,6 @@ const LayoutItem: FC<Props> = ({
   reverseX,
   reverseY,
   children,
-  childrenProps = {},
   onPress,
 }) => {
   const videoRef = useRef<DefaultVideo>(null);
@@ -33,8 +32,9 @@ const LayoutItem: FC<Props> = ({
   }, [visible]);
 
   const handlePress = useCallback(() => {
-    onPress({itemId: id, photo: photo?.uri});
-  }, [onPress, id, photo]);
+    const v = typeof video === 'object' ? video?.uri : undefined;
+    onPress({itemId: id, photo: photo?.uri, video: v});
+  }, [onPress, id, photo, video]);
 
   return (
     <Container
@@ -70,7 +70,7 @@ const LayoutItem: FC<Props> = ({
               opacity={overlay.opacity}
             />
           )}
-          {children && children(childrenProps)}
+          {children}
         </>
       </Button>
     </Container>

@@ -1,4 +1,4 @@
-import React, {FC, useMemo, memo} from 'react';
+import React, {FC, useMemo, memo, useCallback} from 'react';
 import {Props} from './types';
 import {Container} from './styles';
 import Item from './Item';
@@ -21,12 +21,28 @@ const Layout: FC<Props> = ({
   reverseX,
   reverseY,
   onPressItem,
+  renderItemChildren,
   visible,
 }) => {
   const itemInfo = useMemo<ItemLayout | undefined>(
     () => (items && id ? items[id] : undefined),
     [id, items],
   );
+
+  const handleRenderItemChildren = useCallback(() => {
+    if (renderItemChildren) {
+      const v =
+        itemInfo?.video && typeof itemInfo?.video === 'object'
+          ? itemInfo?.video?.uri
+          : undefined;
+      return renderItemChildren({
+        itemId: id,
+        photo: itemInfo?.photo?.uri,
+        video: v,
+        childrenProps: itemInfo?.childrenProps,
+      });
+    }
+  }, [renderItemChildren, itemInfo, id]);
 
   if (type === LayoutType.ITEM) {
     return (
@@ -43,7 +59,7 @@ const Layout: FC<Props> = ({
         reverseY={reverseY}
         onPress={onPressItem}
         visible={visible}>
-        {itemInfo && itemInfo.children ? itemInfo.children : undefined}
+        {handleRenderItemChildren()}
       </Item>
     );
   }
@@ -71,6 +87,7 @@ const Layout: FC<Props> = ({
             reverseX={reverseX}
             reverseY={reverseY}
             onPressItem={onPressItem}
+            renderItemChildren={renderItemChildren}
             visible={visible}
           />
         ))}

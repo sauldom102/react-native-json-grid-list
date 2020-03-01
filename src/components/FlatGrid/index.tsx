@@ -12,6 +12,7 @@ const FlatGrid: FC<Props> = ({
   paddingHorizontal = 0,
   showsVerticalScrollIndicator,
   onItemPress,
+  renderItemChildren,
   style,
 }) => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
@@ -28,11 +29,18 @@ const FlatGrid: FC<Props> = ({
         layout={layouts[layout]}
         items={items}
         paddingHorizontal={paddingHorizontal}
+        renderItemChildren={renderItemChildren}
         onPress={onItemPress}
         visible={isItemVisible(index)}
       />
     ),
-    [layouts, paddingHorizontal, onItemPress, isItemVisible],
+    [
+      layouts,
+      paddingHorizontal,
+      onItemPress,
+      isItemVisible,
+      renderItemChildren,
+    ],
   );
 
   const extractKey = useCallback((_, index) => index + '', []);
