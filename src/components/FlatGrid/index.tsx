@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useState} from 'react';
+import React, {FC, memo, useCallback, useState} from 'react';
 import {ViewToken} from 'react-native';
 import {Props} from './types';
 import Item, {calcHeight} from './Item';
@@ -10,10 +10,9 @@ const FlatGrid: FC<Props> = ({
   data,
   rowSeparator = 0,
   paddingHorizontal = 0,
-  showsVerticalScrollIndicator,
   onItemPress,
   renderItemChildren,
-  style,
+  ...props
 }) => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
 
@@ -85,12 +84,11 @@ const FlatGrid: FC<Props> = ({
       renderItem={handleRenderItem}
       keyExtractor={extractKey}
       ItemSeparatorComponent={handleRenderSeparator}
-      showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       getItemLayout={handleGetItemLayout}
       onViewableItemsChanged={handleViewableItemsChanged}
-      style={style}
+      {...props}
     />
   );
 };
 
-export default FlatGrid;
+export default memo(FlatGrid);

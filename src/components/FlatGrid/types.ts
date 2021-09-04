@@ -33,18 +33,17 @@ interface renderItemChildrenParams {
   childrenProps?: ChildrenProps;
 }
 
-export interface Props {
-  style?: FlatListProps<ItemType>['style'];
+export type Props = Omit<
+  FlatListProps<ItemType>,
+  'data' | 'renderItem' | 'keyExtractor'
+> & {
   rowSeparator?: number;
   paddingHorizontal?: number;
-  showsVerticalScrollIndicator?: FlatListProps<
-    ItemType
-  >['showsVerticalScrollIndicator'];
   layouts: Layouts;
   onItemPress?: (params: onItemPressParams) => void;
   renderItemChildren?: (params: renderItemChildrenParams) => ReactNode;
   data: ItemType[];
-}
+};
 
 export interface SeparatorProps {
   size: number;
