@@ -3,15 +3,16 @@ import {ViewStyle} from 'react-native';
 import {LayoutRoot} from '../../../models/Layout';
 import {ItemLayout} from '../../../models/Item';
 
-interface onPressParams {
+interface ChildrenProps {
+  [propName: string]: any;
+}
+
+interface OnPressParams {
   layout: string;
   itemId?: string;
   photo?: string;
   video?: string;
-}
-
-interface ChildrenProps {
-  [propName: string]: any;
+  childrenProps?: ChildrenProps;
 }
 
 interface renderItemChildrenParams {
@@ -31,7 +32,7 @@ export interface Props {
   };
   visible: boolean;
   paddingHorizontal?: number;
-  onPress?: (params: onPressParams) => void;
+  onPress?: (params: OnPressParams) => void;
   renderItemChildren?: (params: renderItemChildrenParams) => ReactNode;
 }
 

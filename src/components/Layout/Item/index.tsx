@@ -1,8 +1,7 @@
 import React, {FC, useCallback, memo, useRef, useEffect} from 'react';
 import {Props} from './types';
 import {Container} from '../styles';
-import {Button, Video, Overlay} from './styles';
-import FastImage from 'react-native-fast-image';
+import {Button, Image, Video, Overlay} from './styles';
 import DefaultVideo from 'react-native-video';
 
 const LayoutItem: FC<Props> = ({
@@ -21,6 +20,7 @@ const LayoutItem: FC<Props> = ({
   reverseX,
   reverseY,
   children,
+  childrenProps,
   onPress,
 }) => {
   const videoRef = useRef<DefaultVideo>(null);
@@ -33,7 +33,7 @@ const LayoutItem: FC<Props> = ({
 
   const handlePress = useCallback(() => {
     const v = typeof video === 'object' ? video?.uri : undefined;
-    onPress({itemId: id, photo: photo?.uri, video: v});
+    onPress({itemId: id, photo: photo?.uri, video: v, childrenProps});
   }, [onPress, id, photo, video]);
 
   return (
@@ -47,23 +47,8 @@ const LayoutItem: FC<Props> = ({
       parentType={parentType}>
       <Button onPress={handlePress} reverseX={reverseX} reverseY={reverseY}>
         <>
-          {photo && (
-            <FastImage
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                zIndex: -1,
-              }}
-              source={photo}
-            />
-          )}
-          {video && (
-            <Video ref={videoRef} source={video} muted resizeMode="cover" />
-          )}
+          {photo && <Image source={photo} />}
+          {video && <Video ref={videoRef} source={video} muted resizeMode="cover" />}
           {overlay && (
             <Overlay
               color={overlay.color || '#000'}

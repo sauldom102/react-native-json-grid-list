@@ -28,13 +28,14 @@ const Item: FC<Props> & {
   ]);
 
   const handlePressItem = useCallback(
-    ({itemId, photo, video}) => {
+    ({itemId, photo, video, childrenProps}) => {
       if (onPress) {
         onPress({
           layout: layoutName,
           itemId,
           photo,
           video,
+          childrenProps,
         });
       }
     },

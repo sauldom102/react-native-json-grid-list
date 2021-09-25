@@ -14,15 +14,16 @@ export interface Layouts {
   [name: string]: LayoutRoot;
 }
 
-interface onItemPressParams {
+interface ChildrenProps {
+  [propName: string]: any;
+}
+
+interface OnItemPressParams {
   layout: string;
   itemId?: string;
   photo?: string;
   video?: string;
-}
-
-interface ChildrenProps {
-  [propName: string]: any;
+  childrenProps?: ChildrenProps;
 }
 
 interface renderItemChildrenParams {
@@ -40,7 +41,7 @@ export type Props = Omit<
   rowSeparator?: number;
   paddingHorizontal?: number;
   layouts: Layouts;
-  onItemPress?: (params: onItemPressParams) => void;
+  onItemPress?: (params: OnItemPressParams) => void;
   renderItemChildren?: (params: renderItemChildrenParams) => ReactNode;
   data: ItemType[];
 };
