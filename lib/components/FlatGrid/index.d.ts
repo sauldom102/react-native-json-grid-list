@@ -1,4 +1,4 @@
-import { FC } from 'react';
-import { Props } from './types';
-declare const FlatGrid: FC<Props>;
-export default FlatGrid;
+/// <reference types="react" />
+import {Props} from './types';
+declare const _default: import('react').NamedExoticComponent<Props>;
+export default _default;
